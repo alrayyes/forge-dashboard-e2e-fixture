@@ -9,19 +9,19 @@ permissions:
 jobs:
   required-check:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - run: |
           r=$(cat ci/required.txt 2>/dev/null || echo pass)
-          [ "$r" = slow ] && sleep 600
+          [ "$r" = slow ] && sleep 3300
           [ "$r" != fail ]
   optional-check:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - run: |
           r=$(cat ci/optional.txt 2>/dev/null || echo pass)
-          [ "$r" = slow ] && sleep 600
+          [ "$r" = slow ] && sleep 3300
           [ "$r" != fail ]
